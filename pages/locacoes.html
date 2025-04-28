@@ -1,13 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locadora ACME</title>
-    <link rel="stylesheet" href="../styles/locacoes.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Locações - CAR RENTAL</title>
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/locacoes.css">
+  <link rel="icon" href="../assets/icone.jpg">
 </head>
 <body>
+  <header>
+    <div class="logo">
+      <img src="../assets/icone.jpg" alt="Logo Locação de Carros">
+      <h1>CAR RENTAL</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="locacoes.html">My Rentals</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>MINHAS LOCAÇÕES</h2>
     
+    <div class="rentals-container" id="rentalsList">
+      <p>Carregando suas locações...</p>
+    </div>
+  </main>
+
+  <div id="rentalModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2 id="modalRentalTitle">DETALHES DA LOCAÇÃO</h2>
+      
+      <div class="modal-columns">
+        <div class="modal-car-info">
+          <h3>VEÍCULO</h3>
+          <img id="modalRentalCarImage" src="" alt="Car Image">
+          <p id="modalRentalCarModel"></p>
+          <p id="modalRentalCarMake"></p>
+          <p id="modalRentalCarYear"></p>
+        </div>
+        
+        <div class="modal-rental-info">
+          <h3>INFORMAÇÕES</h3>
+          <div class="info-group">
+            <span>Número da Reserva:</span>
+            <p id="modalRentalId"></p>
+          </div>
+          <div class="info-group">
+            <span>Status:</span>
+            <p id="modalRentalStatus"></p>
+          </div>
+          <div class="info-group">
+            <span>Data de Retirada:</span>
+            <p id="modalRentalPickup"></p>
+          </div>
+          <div class="info-group">
+            <span>Data de Devolução:</span>
+            <p id="modalRentalReturn"></p>
+          </div>
+          <div class="info-group">
+            <span>Valor Total:</span>
+            <p id="modalRentalTotal"></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-actions">
+        <button id="editRentalBtn" class="button">Editar Reserva</button>
+        <button id="cancelRentalBtn" class="button cancel-button">Cancelar Reserva</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>EDITAR LOCAÇÃO</h2>
+      
+      <form id="editRentalForm">
+        <div class="form-group">
+          <label for="editPickupDate">Nova Data de Retirada:</label>
+          <input type="date" id="editPickupDate" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="editReturnDate">Nova Data de Devolução:</label>
+          <input type="date" id="editReturnDate" required>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="button">Salvar Alterações</button>
+          <button type="button" id="cancelEditBtn" class="button cancel-button">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../scripts/locacoes.js"></script>
 </body>
-<script src="../scripts/locacoes.js"></script>
 </html>

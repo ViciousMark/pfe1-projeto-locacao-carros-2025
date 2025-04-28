@@ -1,1 +1,160 @@
-@import url(./style.css);
+.rentals-container {
+  margin-top: 2rem;
+}
+
+.rental-card {
+  background: white;
+  border: 1px solid var(--cor3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 5px var(--transp1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.rental-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px var(--transp1);
+}
+
+.rental-info {
+  flex: 2;
+}
+
+.rental-car {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rental-car img {
+  width: 100px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--cor5);
+}
+
+.rental-actions {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.rental-model {
+  font-weight: bold;
+  color: var(--cor1);
+  font-size: 1.1rem;
+}
+
+.rental-dates {
+  color: var(--cor2);
+  margin: 0.5rem 0;
+}
+
+.rental-status {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.status-active {
+  background-color: var(--cor3);
+  color: white;
+}
+
+.status-pending {
+  background-color: #f39c12;
+  color: white;
+}
+
+.status-completed {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.status-cancelled {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.modal-columns {
+  display: flex;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+.modal-car-info {
+  flex: 1;
+  text-align: center;
+}
+
+.modal-car-info img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border: 1px solid var(--cor5);
+}
+
+.modal-rental-info {
+  flex: 1;
+}
+
+.info-group {
+  margin-bottom: 1rem;
+}
+
+.info-group span {
+  font-weight: bold;
+  color: var(--cor1);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.cancel-button {
+  background-color: #e74c3c;
+}
+
+.cancel-button:hover {
+  background-color: #c0392b;
+}
+
+#editModal .form-group {
+  margin-bottom: 1.5rem;
+}
+
+#editModal label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--cor1);
+}
+
+#editModal input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--cor3);
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}

@@ -1,0 +1,107 @@
+:root {
+    --cor1: #003366;
+    --cor2: #006699;
+    --cor3: #0099CC;
+    --cor4: #00CCFF;
+    --cor5: #99DDFF;
+    --transp1: rgba(0, 0, 0, 0.8);
+    --transp2: rgba(255, 255, 255, 0.8);
+    --text-color: #333;
+    --light-gray: #f0f0f0;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  body {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  header {
+    background-color: var(--cor1);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--cor3);
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+  }
+  
+  nav a:hover {
+    color: var(--cor5);
+  }
+  
+  main {
+    padding: 2rem;
+    min-height: calc(100vh - 120px);
+  }
+  
+  footer {
+    background-color: var(--cor1);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-top: 3px solid var(--cor3);
+  }
+  
+  .button {
+    background-color: var(--cor3);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 1px solid var(--cor1);
+  }
+  
+  .button:hover {
+    background-color: var(--cor2);
+  }
+  
+  .view-details {
+    background-color: var(--cor4);
+    margin-top: 10px;
+  }
+  
+  .card {
+    background: white;
+    border: 1px solid var(--cor3);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 5px var(--transp1);
+  }
