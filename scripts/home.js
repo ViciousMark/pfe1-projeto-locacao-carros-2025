@@ -190,6 +190,47 @@ document.addEventListener('DOMContentLoaded', async () => {
       const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) || 1;
       return dailyPrice * days;
     }
+
+
+function handleRentCar() {
+  if (!currentCar) return;
+  
+  const pickupDate = document.getElementById('pickupDate').value;
+  const returnDate = document.getElementById('returnDate').value;
+  
+  if (!pickupDate || !returnDate) {
+      alert('Por favor, selecione as datas de retirada e devolução primeiro.');
+      modal.style.display = 'none';
+      document.querySelector('.search').scrollIntoView({ behavior: 'smooth' });
+      return;
+  }
+  
+  const newRental = {
+      id: Date.now(),
+      car: currentCar,
+      dates: {
+          pickup: pickupDate,
+          return: returnDate
+      },
+      status: "pending",
+      total: calculateTotalPrice(currentCar.valor_diaria, pickupDate, returnDate)
+  };
+  
+  saveRental(newRental);
+  
+  alert(`Você alugou um ${currentCar.marca} ${currentCar.modelo}\n\nPeríodo: ${pickupDate} a ${returnDate}\nValor total: R$ ${newRental.total.toFixed(2)}`);
+  
+  modal.style.display = 'none';
+  currentCar = null;
+}
+
+function saveRental(rental) {
+  let rentals = JSON.parse(localStorage.getItem('carRentals') || '[]');
+  rentals.push(rental);
+  localStorage.setItem('carRentals', JSON.stringify(rentals));
+}
+
+rentButton.addEventListener('click', handleRentCar);
   
     init();
   });

@@ -18,68 +18,61 @@ document.addEventListener('DOMContentLoaded', () => {
     renderRentals();
   }
 
-  async function loadRentals() {
-    try {
-      await new Promise(resolve => setTimeout(resolve, 500));
+
+async function loadRentals() {
+  try {
+      const savedRentals = JSON.parse(localStorage.getItem('carRentals') || '[]');
       
-      rentals = [
-        {
-          id: 1,
-          car: {
-            id: 2,
-            modelo: "HB20 Vision",
-            marca: "Hyundai",
-            ano: 2023,
-            imagem: "hb20.png",
-            valor_diaria: 150.00
-          },
-          dates: {
-            pickup: "2025-06-15",
-            return: "2025-06-20"
-          },
-          status: "active",
-          total: 750.00
-        },
-        {
-          id: 2,
-          car: {
-            id: 4,
-            modelo: "Corolla XEi",
-            marca: "Toyota",
-            ano: 2022,
-            imagem: "corolla.png",
-            valor_diaria: 250.00
-          },
-          dates: {
-            pickup: "2025-07-10",
-            return: "2025-07-15"
-          },
-          status: "pending",
-          total: 1250.00
-        },
-        {
-          id: 3,
-          car: {
-            id: 3,
-            modelo: "Renegade Longitude",
-            marca: "Jeep",
-            ano: 2023,
-            imagem: "renegade.png",
-            valor_diaria: 210.00
-          },
-          dates: {
-            pickup: "2025-05-01",
-            return: "2025-05-05"
-          },
-          status: "completed",
-          total: 840.00
-        }
-      ];
-    } catch (error) {
+      const rentalsWithCarInfo = await enhanceRentalsWithCarData(savedRentals);
+      
+      rentals = rentalsWithCarInfo.filter(r => r.status !== 'cancelled');
+      
+      updateRentalStatuses();
+  } catch (error) {
       console.error("Erro ao carregar locações:", error);
       rentals = [];
-    }
   }
+}
+
+async function enhanceRentalsWithCarData(rentals) {
+  try {
+      const response = await fetch('../assets/dados.json');
+      if (!response.ok) throw new Error('Erro ao carregar dados');
+      const allCars = await response.json();
+      
+      return rentals.map(rental => {
+          const fullCarInfo = allCars.find(c => c.id === rental.car.id) || rental.car;
+          return {
+              ...rental,
+              car: {
+                  ...fullCarInfo,
+                  ...rental.car
+              }
+          };
+      });
+  } catch (error) {
+      console.error("Erro ao carregar dados dos carros:", error);
+      return rentals;
+  }
+}
+
+function updateRentalStatuses() {
+  const today = new Date().toISOString().split('T')[0];
+  
+  rentals.forEach(rental => {
+      if (rental.status === 'cancelled') return;
+      
+      if (today > rental.dates.return) {
+          rental.status = 'completed';
+      } else if (today >= rental.dates.pickup) {
+          rental.status = 'active';
+      } else {
+          rental.status = 'pending';
+      }
+  });
+  
+  localStorage.setItem('carRentals', JSON.stringify(rentals));
+}
 
   function setupEventListeners() {
     closeModals.forEach(btn => {
